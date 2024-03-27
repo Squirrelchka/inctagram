@@ -119,7 +119,7 @@ it("input values are saved after returning from the page Privacy Policy", () => 
   cy.wait(5000);
   cy.get(signUpSelectors.userNameField).should("have.value", userName);
 });
-it.only("switching on page sign in", () => {
+it("switching on page sign in", () => {
  cy.get(signUpSelectors.clickStringSignIn).click();
 cy.get(signInSelectors.titleSignIn).invoke("text").should("eql", "Войти");
 });
