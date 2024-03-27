@@ -7,7 +7,14 @@
   "errorEmailMessage": "#email-span > span",
   "errorPasswordMessage": "#password-span > span",
   "errorPasswordConfirmationMessage": "#passwordConfirmation-span > span",
-  "emailSent": "body > div.Modal_Modal__2M1ru.Modal_opened__qFzVI > div.Modal_content__b1ltt > div.Modal_header__Aq74H > h2",
-  "buttonSignUp": "body > div.app > div.app-container > main > div > div > form > button",
-  "checkBox": "#myCheckbox"
+  "emailSent": ".Modal_header__Aq74H > h2",
+  "buttonSignUp": ".app-container > main > div > div > form > button",
+  "checkBox": "#myCheckbox",
+  "buttonSwitchingLanguages": ".Select_SelectIcon__8YI6X > svg",
+  "titleSignUp":".title.b-title.bt26.semibold.align-center",
+  "privacyPolicy":":nth-child(5) > a",
+  "titlePrivacyPolicy":".document-content > h1",
+  "buttonBackToSignUp":".TermsOfServicePage_backToBlock__l_ayo > button",
+  "clickStringSignIn":"body > div.app > div.app-container > main > div > div > a > span"
+
 }
