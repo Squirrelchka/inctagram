@@ -1,0 +1,30 @@
+[
+  {
+    "email": "Ivanov@ivanov_petrov.ru",
+    "errorMessage": "Электронная почта должна соответствовать формату example@example.com."
+  },
+   {
+    "email": "ivanov_petrov@gmailcom",
+    "errorMessage": "Электронная почта должна соответствовать формату example@example.com."
+  },
+  {
+    "email": "ivan@",
+    "errorMessage": "Электронная почта должна соответствовать формату example@example.com."
+  },
+  {
+    "email": "levtina",
+    "errorMessage": "Электронная почта должна соответствовать формату example@example.com."
+  },
+  {
+    "email": "@gmail.com",
+    "errorMessage": "Электронная почта должна соответствовать формату example@example.com."
+  },
+  {
+    "email": "ivanov.petrov@yandex.r",
+    "errorMessage": "Электронная почта должна соответствовать формату example@example.com."
+  },
+  {
+    "email": "@gmail.com",
+    "errorMessage": "Электронная почта должна соответствовать формату example@example.com."
+  }
+]

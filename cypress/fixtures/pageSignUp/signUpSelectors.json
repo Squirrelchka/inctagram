@@ -1,0 +1,13 @@
+{
+  "userNameField": "#userName",
+  "emailField": "#email",
+  "passwordField": "#password",
+  "passwordConfirmationField": "#passwordConfirmation",
+  "errorUsernameMessage": "#userName-span > span",
+  "errorEmailMessage": "#email-span > span",
+  "errorPasswordMessage": "#password-span > span",
+  "errorPasswordConfirmationMessage": "#passwordConfirmation-span > span",
+  "emailSent": "body > div.Modal_Modal__2M1ru.Modal_opened__qFzVI > div.Modal_content__b1ltt > div.Modal_header__Aq74H > h2",
+  "buttonSignUp": "body > div.app > div.app-container > main > div > div > form > button",
+  "checkBox": "#myCheckbox"
+}

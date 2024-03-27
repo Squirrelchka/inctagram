@@ -1,0 +1,26 @@
+[
+  {
+    "userName": "Maria",
+    "errorMessage": "Минимальное количество символов 6"
+  },
+  {
+    "userName": "Marialkjhgfdsazxcvbnmqwertyuiop",
+    "errorMessage": "Максимальное количество символов 30"
+  },
+  {
+    "userName": "!@#$%^&'{}[]*?~",
+    "errorMessage": "Username может содержать только следующие символы 0-9; A-Z; a-z; _ ; -"
+  },
+  {
+    "userName": "ekatina@gmail.com",
+    "errorMessage": "Username может содержать только следующие символы 0-9; A-Z; a-z; _ ; -"
+  },
+  {
+    "userName": "аlevtina",
+    "errorMessage": "Username может содержать только следующие символы 0-9; A-Z; a-z; _ ; -"
+  },
+  {
+    "userName": "Иванов",
+    "errorMessage": "Username может содержать только следующие символы 0-9; A-Z; a-z; _ ; -"
+  }
+]
