@@ -89,13 +89,15 @@ describe("SignUp", () => {
       "Подтверждение пароля обязательно"
     );
   });
-  it("switching languages", () => {
+  it.only("switching languages", () => {
     cy.get(signUpSelectors.buttonSwitchingLanguages).click();
     cy.contains("English").click();
     cy.wait(5000);
     cy.get(signUpSelectors.titleSignUp).invoke('text').should("eql","Sign Up");
+    cy.get(signUpSelectors.buttonSwitchingLanguages).click();
+    cy.contains("Russian").click();  
   });
-  it("button SignUp is not click", () => {
+  it.only("button SignUp is not click", () => {
     cy.checkValidValues(
       validTestData[0].userName,
       validTestData[0].email,
@@ -105,7 +107,7 @@ describe("SignUp", () => {
     cy.get(signUpSelectors.checkBox).uncheck({ force: true });
     cy.get(signUpSelectors.buttonSignUp).should("be.disabled");
 });
-it("input values are saved after returning from the page Privacy Policy", () => {
+it.only("input values are saved after returning from the page Privacy Policy", () => {
     cy.checkValidValues(
     validTestData[0].userName,
     validTestData[0].email,
@@ -119,7 +121,7 @@ it("input values are saved after returning from the page Privacy Policy", () => 
   cy.wait(5000);
   cy.get(signUpSelectors.userNameField).should("have.value", userName);
 });
-it("switching on page sign in", () => {
+it.only("switching on page sign in", () => {
  cy.get(signUpSelectors.clickStringSignIn).click();
 cy.get(signInSelectors.titleSignIn).invoke("text").should("eql", "Войти");
 });
