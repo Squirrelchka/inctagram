@@ -6,11 +6,11 @@ on:
   push:
     branches: [ "main" ]
     paths:
-      - 'postman/collections/Instagram.json'
+      - 'postman/collections'
   pull_request:
     branches: [ "main" ]
     paths:
-      - 'postman/collections/Instagram.json'
+      - 'postman/collections'
   workflow_dispatch:
 
 jobs:
