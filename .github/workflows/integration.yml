@@ -16,7 +16,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   postman_tests:
-    if: ${{ contains(github.event.head_commit.modified, 'postman') }}
+    #if: ${{ contains(github.event.head_commit.modified, 'postman') }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
