@@ -1,4 +1,4 @@
-name: Cypress
+name: Cypress Tests
 
 on:
   push:
@@ -8,8 +8,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  cypress_tests:
-    if: ${{ contains(github.event.head_commit.modified, 'cypress') }}
+  test:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
