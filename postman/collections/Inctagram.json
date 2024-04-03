@@ -599,6 +599,7 @@
 										{
 											"listen": "test",
 											"script": {
+												"id": "324283d0-4c65-43ea-93e4-455a0ef0e17d",
 												"exec": [
 													"pm.test(\"Status code is 204\", function () {\r",
 													"    pm.response.to.have.status(204);\r",
@@ -606,7 +607,7 @@
 													""
 												],
 												"type": "text/javascript",
-												"id": "324283d0-4c65-43ea-93e4-455a0ef0e17d"
+												"packages": {}
 											}
 										}
 									],
@@ -619,7 +620,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"email\": \"{{$randomEmail}}\",\r\n    \"userName\": \" Ivanov \",\r\n    \"password\": \"Qwerty123!\",\r\n    \"passwordConfirmation\": \"Qwerty123!\"\r\n}",
+											"raw": "{\r\n    \"email\": \"{{$randomEmail}}\",\r\n    \"userName\": \" Avanov \",\r\n    \"password\": \"Qwerty123!\",\r\n    \"passwordConfirmation\": \"Qwerty123!\"\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
