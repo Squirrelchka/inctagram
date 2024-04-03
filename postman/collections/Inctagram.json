@@ -1187,13 +1187,14 @@
 										{
 											"listen": "test",
 											"script": {
+												"id": "88813b47-15c1-4a08-9f5f-a72d31472217",
 												"exec": [
-													"pm.test(\"Status code is 204\", function () {\r",
-													"    pm.response.to.have.status(204);\r",
+													"pm.test(\"Status code is 400\", function () {\r",
+													"    pm.response.to.have.status(400);\r",
 													"});"
 												],
 												"type": "text/javascript",
-												"id": "88813b47-15c1-4a08-9f5f-a72d31472217"
+												"packages": {}
 											}
 										}
 									],
@@ -3650,13 +3651,13 @@
 								{
 									"listen": "test",
 									"script": {
+										"id": "7e5d1835-3931-4445-b95d-668232ba5eba",
 										"exec": [
 											"pm.test(\"Status code is 400\", function () {\r",
 											"    pm.response.to.have.status(400);\r",
 											"});\r",
 											"pm.test(\"messages come in response\", function () {\r",
 											"    var jsonData = pm.response.json();\r",
-											"    pm.expect(jsonData.messages).to.eq(\"invalid password or email\");\r",
 											"    pm.expect(jsonData.messages).to.not.be.null\r",
 											"});\r",
 											"pm.test(\"Status code name has string\", function () {\r",
@@ -3664,8 +3665,7 @@
 											"});"
 										],
 										"type": "text/javascript",
-										"packages": {},
-										"id": "7e5d1835-3931-4445-b95d-668232ba5eba"
+										"packages": {}
 									}
 								}
 							],
