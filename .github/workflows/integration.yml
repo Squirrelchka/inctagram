@@ -20,4 +20,4 @@ jobs:
       - name: Run a multi-line script
         run: |
           npm install -g postman
-          newman run "postman/collections/Instagram.json" -e "workspace.postman_globals.json" -e "Instagram environment.postman_environment.json" --global-var "API_KEY=${{secrets.API_KEY2}}"
+          newman run "postman/collections/Inctagram.json" -e "workspace.postman_globals.json" -e "Instagram environment.postman_environment.json" --global-var "API_KEY=${{secrets.API_KEY2}}"
