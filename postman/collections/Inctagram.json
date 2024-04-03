@@ -1712,6 +1712,7 @@
 										{
 											"listen": "test",
 											"script": {
+												"id": "4195a04c-4697-44a8-aa80-1934b77c1a17",
 												"exec": [
 													"pm.test(\"Status code is 400\", function () {\r",
 													"    pm.response.to.have.status(400);\r",
@@ -1721,7 +1722,7 @@
 													"});"
 												],
 												"type": "text/javascript",
-												"id": "4195a04c-4697-44a8-aa80-1934b77c1a17"
+												"packages": {}
 											}
 										}
 									],
@@ -1734,7 +1735,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"email\": \"ivanov@ivanov_kozlov.com\",\r\n    \"userName\": \"Ekaterina_11\",\r\n    \"password\": \"Qwerty123!\"\r\n}",
+											"raw": "{\r\n    \"email\": \"ivanov@i_kozlov.com\",\r\n    \"userName\": \"Ekaterina_11\",\r\n    \"password\": \"Qwerty123!\"\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
