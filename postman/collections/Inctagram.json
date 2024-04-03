@@ -1735,7 +1735,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"email\": \"ivanov@i_kozlo.com\",\r\n    \"userName\": \"Ekaterina_11\",\r\n    \"password\": \"Qwerty123!\"\r\n}",
+											"raw": "{\r\n    \"email\": \"ivanov@i_kozlov.com\",\r\n    \"userName\": \"Ekaterina_11\",\r\n    \"password\": \"Qwerty123!\"\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
