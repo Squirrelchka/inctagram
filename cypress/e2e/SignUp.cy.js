@@ -101,7 +101,7 @@ describe("SignUp", () => {
     cy.checkValidValues(
       validTestData[0].userName,
       validTestData[0].email,
-      validTestData[0].password,
+      validTestData[0].password, 
       validTestData[0].passwordConfirmation
     );
     cy.get(signUpSelectors.checkBox).uncheck({ force: true });
