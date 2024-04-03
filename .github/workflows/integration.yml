@@ -4,9 +4,9 @@ name: Postman
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "integr" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "integr" ]
     
   workflow_dispatch:
 
