@@ -5,12 +5,9 @@ name: Postman
 on:
   push:
     branches: [ "main" ]
-    paths:
-      - 'postman/collections'
   pull_request:
     branches: [ "main" ]
-    paths:
-      - 'postman/collections'
+    
   workflow_dispatch:
 
 jobs:
