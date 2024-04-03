@@ -1,0 +1,23 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Postman
+
+on:
+  push:
+    branches: [ "integr" ]
+  pull_request:
+    branches: [ "integr" ]
+    
+  workflow_dispatch:
+
+jobs:
+  postman_tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run a one-line script
+        run: echo Hello, world!
+      - name: Run a multi-line script
+        run: |
+          npm install -g postman
+          newman run "postman/collections/Inctagram.json" -e "workspace.postman_globals.json" -e "Instagram environment.postman_environment.json" --global-var "API_KEY=${{secrets.API_KEY2}}"
