@@ -7,7 +7,7 @@
 	},
 	"item": [
 		{
-			"name": "Sing up",
+			"name": "Sign up",
 			"item": [
 				{
 					"name": "Username",
@@ -3477,7 +3477,7 @@
 			"id": "c8aa2202-e3a6-4d26-bb2a-2e5ab75677b0"
 		},
 		{
-			"name": "Sing in",
+			"name": "Sign in",
 			"item": [
 				{
 					"name": "Valid data",
