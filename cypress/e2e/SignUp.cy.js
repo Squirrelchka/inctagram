@@ -89,7 +89,7 @@ describe("SignUp", () => {
       "Подтверждение пароля обязательно"
     );
   });
-  it.only("switching languages", () => {
+  it("switching languages", () => {
     cy.get(signUpSelectors.buttonSwitchingLanguages).click();
     cy.contains("English").click();
     cy.wait(5000);
@@ -97,7 +97,7 @@ describe("SignUp", () => {
     cy.get(signUpSelectors.buttonSwitchingLanguages).click();
     cy.contains("Russian").click();  
   });
-  it.only("button SignUp is not click", () => {
+  it("button SignUp is not click", () => {
     cy.checkValidValues(
       validTestData[0].userName,
       validTestData[0].email,
@@ -107,7 +107,7 @@ describe("SignUp", () => {
     cy.get(signUpSelectors.checkBox).uncheck({ force: true });
     cy.get(signUpSelectors.buttonSignUp).should("be.disabled");
 });
-it.only("input values are saved after returning from the page Privacy Policy", () => {
+it("input values are saved after returning from the page Privacy Policy", () => {
     cy.checkValidValues(
     validTestData[0].userName,
     validTestData[0].email,
