@@ -93,38 +93,38 @@ describe("SignUp", () => {
     cy.get(signUpSelectors.buttonSwitchingLanguages).click();
     cy.contains("English").click();
     cy.wait(5000);
-    cy.get(signUpSelectors.titleSignUp).invoke('text').should("eql","Sign Up");
+    cy.get(signUpSelectors.titleSignUp).invoke("text").should("eql", "Sign Up");
     cy.get(signUpSelectors.buttonSwitchingLanguages).click();
-    cy.contains("Russian").click();  
+    cy.contains("Russian").click();
   });
   it("button SignUp is not click", () => {
     cy.checkValidValues(
       validTestData[0].userName,
       validTestData[0].email,
-      validTestData[0].password, 
+      validTestData[0].password,
       validTestData[0].passwordConfirmation
     );
     cy.get(signUpSelectors.checkBox).uncheck({ force: true });
     cy.get(signUpSelectors.buttonSignUp).should("be.disabled");
-});
-it("input values are saved after returning from the page Privacy Policy", () => {
+  });
+  it("input values are saved after returning from the page Privacy Policy", () => {
     cy.checkValidValues(
-    validTestData[0].userName,
-    validTestData[0].email,
-    validTestData[0].password,
-    validTestData[0].passwordConfirmation
-  );
-  let userName = validTestData[0].userName
-  cy.get(signUpSelectors.privacyPolicy).click();
-  cy.get(signUpSelectors.titlePrivacyPolicy).invoke("text").should("eql", "Политика конфиденциальности");
-  cy.get(signUpSelectors.buttonBackToSignUp).click();
-  cy.wait(5000);
-  cy.get(signUpSelectors.userNameField).should("have.value", userName);
+      validTestData[0].userName,
+      validTestData[0].email,
+      validTestData[0].password,
+      validTestData[0].passwordConfirmation
+    );
+    let userName = validTestData[0].userName;
+    cy.get(signUpSelectors.privacyPolicy).click();
+    cy.get(signUpSelectors.titlePrivacyPolicy)
+      .invoke("text")
+      .should("eql", "Политика конфиденциальности");
+    cy.get(signUpSelectors.buttonBackToSignUp).click();
+    cy.wait(5000);
+    cy.get(signUpSelectors.userNameField).should("have.value", userName);
+  });
+  it.only("switching on page sign in", () => {
+    cy.get(signUpSelectors.clickStringSignIn).click();
+    cy.get(signInSelectors.titleSignIn).invoke("text").should("eql", "Войти");
+  });
 });
-it.only("switching on page sign in", () => {
- cy.get(signUpSelectors.clickStringSignIn).click();
-cy.get(signInSelectors.titleSignIn).invoke("text").should("eql", "Войти");
-});
-
-
-})
