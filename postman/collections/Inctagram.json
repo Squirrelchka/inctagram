@@ -1183,52 +1183,6 @@
 							"name": "Valid data",
 							"item": [
 								{
-									"name": "22",
-									"event": [
-										{
-											"listen": "test",
-											"script": {
-												"id": "88813b47-15c1-4a08-9f5f-a72d31472217",
-												"exec": [
-													"pm.test(\"Status code is 400\", function () {\r",
-													"    pm.response.to.have.status(400);\r",
-													"});"
-												],
-												"type": "text/javascript",
-												"packages": {}
-											}
-										}
-									],
-									"id": "9a85f229-82ac-4526-925b-e82c01418390",
-									"protocolProfileBehavior": {
-										"disableBodyPruning": true
-									},
-									"request": {
-										"method": "POST",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "{\r\n    \"email\": \"вася@вася.рф\",\r\n    \"userName\": \"Ekaterina\",\r\n    \"password\": \"Qwerty123!\"\r\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": {
-											"raw": "{{baseUrl}}/auth/registration",
-											"host": [
-												"{{baseUrl}}"
-											],
-											"path": [
-												"auth",
-												"registration"
-											]
-										}
-									},
-									"response": []
-								},
-								{
 									"name": "23",
 									"event": [
 										{
@@ -1301,13 +1255,48 @@
 										{
 											"listen": "test",
 											"script": {
+												"id": "f348823d-059e-4f6d-bc79-03dc19c0975e",
 												"exec": [
 													"pm.test(\"Status code is 204\", function () {\r",
 													"    pm.response.to.have.status(204);\r",
 													"});"
 												],
 												"type": "text/javascript",
-												"id": "f348823d-059e-4f6d-bc79-03dc19c0975e"
+												"packages": {}
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "5b2ba1a0-6c51-408c-9069-dc564ece80fe",
+												"exec": [
+													"pm.globals.set(\"randomToUpperEmail\", generateRandomEmail());\r",
+													"\r",
+													"function generateRandomEmail() {\r",
+													"    let result = '';\r",
+													"    const characters = 'abcdefghijklmnopqrstuvwxyz';\r",
+													"    const charactersLength = characters.length;\r",
+													"    \r",
+													"    // Генерация случайного имени пользователя\r",
+													"    let userName = '';\r",
+													"    for (let i = 0; i < 6; i++) {\r",
+													"        userName += characters.charAt(Math.floor(Math.random() * charactersLength)).toUpperCase(); // Буквы в верхнем регистре\r",
+													"    }\r",
+													"\r",
+													"    // Генерация случайной доменной части\r",
+													"    let domain = '';\r",
+													"    for (let i = 0; i < 8; i++) {\r",
+													"        domain += characters.charAt(Math.floor(Math.random() * charactersLength)).toUpperCase(); // Буквы в верхнем регистре\r",
+													"    }\r",
+													"\r",
+													"    // Сборка и возврат email\r",
+													"    result = userName + '@' + domain + '.com'; // Добавляем '.com' к доменной части\r",
+													"    \r",
+													"    return result;\r",
+													"}"
+												],
+												"type": "text/javascript",
+												"packages": {}
 											}
 										}
 									],
@@ -1320,7 +1309,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"email\": \"IVANOV@IVANOV.ru\",\r\n    \"userName\": \"Ekaterina_2\",\r\n    \"password\": \"Qwerty123!\"\r\n}",
+											"raw": "{\r\n    \"email\": \"{{randomToUpperEmail}}\",\r\n    \"userName\": \"Ekaterina_1\",\r\n    \"password\": \"Qwerty123!\"\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -1346,13 +1335,41 @@
 										{
 											"listen": "test",
 											"script": {
+												"id": "97fa24d1-6e9b-432f-8e50-6f5a3a35e422",
 												"exec": [
 													"pm.test(\"Status code is 204\", function () {\r",
 													"    pm.response.to.have.status(204);\r",
 													"});"
 												],
 												"type": "text/javascript",
-												"id": "97fa24d1-6e9b-432f-8e50-6f5a3a35e422"
+												"packages": {}
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "6db3f03a-6a3e-4a6f-907c-d453ada99016",
+												"exec": [
+													"pm.globals.set(\"domainNumberEmail\", generateRandomEmail());\r",
+													"\r",
+													"function generateRandomEmail() {\r",
+													"    let result = '';\r",
+													"    const characters = 'abcdefghijklmnopqrstuvwxyz';\r",
+													"    const charactersLength = characters.length;\r",
+													"    let userName = '';\r",
+													"    for (let i = 0; i < 6; i++) {\r",
+													"        userName += characters.charAt(Math.floor(Math.random() * charactersLength)); \r",
+													"    }\r",
+													"    let domain = '';\r",
+													"    for (let i = 0; i < 8; i++) {\r",
+													"        domain += Math.floor(Math.random() * 10); // Генерация случайной цифры от 0 до 9\r",
+													"    }\r",
+													"    result = userName + '@' + domain + '.com'; \r",
+													"    return result;\r",
+													"}"
+												],
+												"type": "text/javascript",
+												"packages": {}
 											}
 										}
 									],
@@ -1365,7 +1382,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"email\": \"ivanov@999.ru\",\r\n    \"userName\": \"Ekaterina_3\",\r\n    \"password\": \"Qwerty123!\"\r\n}",
+											"raw": "{\r\n    \"email\": \"{{domainNumberEmail}}\",\r\n    \"userName\": \"Ekaterina_3\",\r\n    \"password\": \"Qwerty123!\"\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -1391,13 +1408,41 @@
 										{
 											"listen": "test",
 											"script": {
+												"id": "b7b0d2ef-84c0-4dc3-8ad1-eed9889279b4",
 												"exec": [
 													"pm.test(\"Status code is 204\", function () {\r",
 													"    pm.response.to.have.status(204);\r",
 													"});"
 												],
 												"type": "text/javascript",
-												"id": "b7b0d2ef-84c0-4dc3-8ad1-eed9889279b4"
+												"packages": {}
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "4364bdd6-fb10-4524-844c-db8b41664f6a",
+												"exec": [
+													"pm.globals.set(\"numberNameEmail\", generateRandomEmail());\r",
+													"\r",
+													"function generateRandomEmail() {\r",
+													"    let result = '';\r",
+													"    let userName = '';\r",
+													"    for (let i = 0; i < 6; i++) {\r",
+													"        userName += Math.floor(Math.random() * 10); // Генерация случайной цифры от 0 до 9\r",
+													"    }\r",
+													"    let domain = '';\r",
+													"    const characters = 'abcdefghijklmnopqrstuvwxyz';\r",
+													"    const charactersLength = characters.length;\r",
+													"    for (let i = 0; i < 8; i++) {\r",
+													"        domain += characters.charAt(Math.floor(Math.random() * charactersLength));\r",
+													"    }\r",
+													"    result = userName + '@' + domain + '.com'; \r",
+													"    return result;\r",
+													"}"
+												],
+												"type": "text/javascript",
+												"packages": {}
 											}
 										}
 									],
@@ -1410,7 +1455,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"email\": \"987@gmail.com\",\r\n    \"userName\": \"Ekaterina_4\",\r\n    \"password\": \"Qwerty123!\"\r\n}",
+											"raw": "{\r\n    \"email\": \"{{numberNameEmail}}\",\r\n    \"userName\": \"Ekaterina_4\",\r\n    \"password\": \"Qwerty123!\"\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -1436,13 +1481,48 @@
 										{
 											"listen": "test",
 											"script": {
+												"id": "84cd113d-830b-4142-b347-1d11c4944d0e",
 												"exec": [
 													"pm.test(\"Status code is 204\", function () {\r",
 													"    pm.response.to.have.status(204);\r",
 													"});"
 												],
 												"type": "text/javascript",
-												"id": "84cd113d-830b-4142-b347-1d11c4944d0e"
+												"packages": {}
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "7e6c0238-0e8c-443a-b13b-5a874b05af7e",
+												"exec": [
+													"pm.globals.set(\"dashInEmail\", generateRandomEmail());\r",
+													"\r",
+													"function generateRandomEmail() {\r",
+													"    let result = '';\r",
+													"    const characters = 'abcdefghijklmnopqrstuvwxyz';\r",
+													"    const charactersLength = characters.length;\r",
+													"    \r",
+													"    let userName = '';\r",
+													"    let dashIndex = Math.floor(Math.random() * 6); // Генерируем случайный индекс для добавления тире\r",
+													"    for (let i = 0; i < 6; i++) {\r",
+													"        if (i === dashIndex) {\r",
+													"            userName += '-'; // Добавляем тире в случайное место\r",
+													"        }\r",
+													"        userName += characters.charAt(Math.floor(Math.random() * charactersLength));\r",
+													"    }\r",
+													"    let domain = '';\r",
+													"    for (let i = 0; i < 8; i++) {\r",
+													"        domain += characters.charAt(Math.floor(Math.random() * charactersLength)); \r",
+													"    }\r",
+													"    result = userName + '@' + domain + '.com'; \r",
+													"    \r",
+													"    return result;\r",
+													"}\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
 											}
 										}
 									],
@@ -1455,7 +1535,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"email\": \"ivanov-petrov@gmail.com\",\r\n    \"userName\": \"Ekaterina_5\",\r\n    \"password\": \"Qwerty123!\"\r\n}",
+											"raw": "{\r\n    \"email\": \"{{dashInEmail}}\",\r\n    \"userName\": \"Ekaterina_5\",\r\n    \"password\": \"Qwerty123!\"\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -1481,13 +1561,48 @@
 										{
 											"listen": "test",
 											"script": {
+												"id": "d39885b8-c6d2-4b8a-b0c6-bb641da078d9",
 												"exec": [
 													"pm.test(\"Status code is 204\", function () {\r",
 													"    pm.response.to.have.status(204);\r",
 													"});"
 												],
 												"type": "text/javascript",
-												"id": "d39885b8-c6d2-4b8a-b0c6-bb641da078d9"
+												"packages": {}
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "81cb45dc-caa6-41a3-bf94-8876df66b72b",
+												"exec": [
+													"pm.globals.set(\"dashInDomainEmail\", generateRandomEmail());\r",
+													"\r",
+													"function generateRandomEmail() {\r",
+													"    let result = '';\r",
+													"    const characters = 'abcdefghijklmnopqrstuvwxyz';\r",
+													"    const charactersLength = characters.length;\r",
+													"    \r",
+													"    let userName = '';\r",
+													"    for (let i = 0; i < 6; i++) {\r",
+													"       userName += characters.charAt(Math.floor(Math.random() * charactersLength));\r",
+													"    }\r",
+													"    let domain = '';\r",
+													"    let dashIndex = Math.floor(Math.random() * 6); // Генерируем случайный индекс для добавления тире\r",
+													"    for (let i = 0; i < 8; i++) {\r",
+													"        if (i === 4) {\r",
+													"            domain += '-'; // Добавляем тире в случайное место\r",
+													"        }\r",
+													"    domain += characters.charAt(Math.floor(Math.random() * charactersLength)); \r",
+													"    }\r",
+													"    result = userName + '@' + domain + '.com'; \r",
+													"    \r",
+													"    return result;\r",
+													"}\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
 											}
 										}
 									],
@@ -1500,7 +1615,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"email\": \"ivanov@ivanov-petroi.com\",\r\n    \"userName\": \"Ekaterina_6\",\r\n    \"password\": \"Qwerty123!\"\r\n}",
+											"raw": "{\r\n    \"email\": \"{{dashInDomainEmail}}\",\r\n    \"userName\": \"Ekaterina_6\",\r\n    \"password\": \"Qwerty123!\"\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -1526,13 +1641,48 @@
 										{
 											"listen": "test",
 											"script": {
+												"id": "c6bbe0f2-f6b5-4e40-8381-063a801389d1",
 												"exec": [
 													"pm.test(\"Status code is 204\", function () {\r",
 													"    pm.response.to.have.status(204);\r",
 													"});"
 												],
 												"type": "text/javascript",
-												"id": "c6bbe0f2-f6b5-4e40-8381-063a801389d1"
+												"packages": {}
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "e4cba394-cea0-4f92-8e12-54f75022846a",
+												"exec": [
+													"pm.globals.set(\"underScoreInEmail\", generateRandomEmail());\r",
+													"\r",
+													"function generateRandomEmail() {\r",
+													"    let result = '';\r",
+													"    const characters = 'abcdefghijklmnopqrstuvwxyz';\r",
+													"    const charactersLength = characters.length;\r",
+													"    \r",
+													"    let userName = '';\r",
+													"    let dashIndex = Math.floor(Math.random() * 6); \r",
+													"    for (let i = 0; i < 6; i++) {\r",
+													"        if (i === dashIndex) {\r",
+													"            userName += '_'; \r",
+													"        }\r",
+													"        userName += characters.charAt(Math.floor(Math.random() * charactersLength));\r",
+													"    }\r",
+													"    let domain = '';\r",
+													"    for (let i = 0; i < 8; i++) {\r",
+													"        domain += characters.charAt(Math.floor(Math.random() * charactersLength)); \r",
+													"    }\r",
+													"    result = userName + '@' + domain + '.com'; \r",
+													"    \r",
+													"    return result;\r",
+													"}\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
 											}
 										}
 									],
@@ -1545,7 +1695,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"email\": \"ivanov_petrov@kozlov.com\",\r\n    \"userName\": \"Ekaterina231\",\r\n    \"password\": \"Qwerty123!\"\r\n}",
+											"raw": "{\r\n    \"email\": \"{{underScoreInEmail}}\",\r\n    \"userName\": \"Ekaterina231\",\r\n    \"password\": \"Qwerty123!\"\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -1571,13 +1721,48 @@
 										{
 											"listen": "test",
 											"script": {
+												"id": "1661b5ca-a91c-4211-a11f-0893eee3ce7d",
 												"exec": [
 													"pm.test(\"Status code is 204\", function () {\r",
 													"    pm.response.to.have.status(204);\r",
 													"});"
 												],
 												"type": "text/javascript",
-												"id": "1661b5ca-a91c-4211-a11f-0893eee3ce7d"
+												"packages": {}
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "a013a2be-6538-487f-9dea-e13708af2f29",
+												"exec": [
+													"pm.globals.set(\"pointInNameEmail\", generateRandomEmail());\r",
+													"\r",
+													"function generateRandomEmail() {\r",
+													"    let result = '';\r",
+													"    const characters = 'abcdefghijklmnopqrstuvwxyz';\r",
+													"    const charactersLength = characters.length;\r",
+													"    \r",
+													"    let userName = '';\r",
+													"    let dashIndex = Math.floor(Math.random() * 6); \r",
+													"    for (let i = 0; i < 6; i++) {\r",
+													"        if (i === dashIndex) {\r",
+													"            userName += '.'; \r",
+													"        }\r",
+													"        userName += characters.charAt(Math.floor(Math.random() * charactersLength));\r",
+													"    }\r",
+													"    let domain = '';\r",
+													"    for (let i = 0; i < 8; i++) {\r",
+													"        domain += characters.charAt(Math.floor(Math.random() * charactersLength)); \r",
+													"    }\r",
+													"    result = userName + '@' + domain + '.com'; \r",
+													"    \r",
+													"    return result;\r",
+													"}\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
 											}
 										}
 									],
@@ -1590,7 +1775,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"email\": \"ivanov.petrov@kozlov.com\",\r\n    \"userName\": \"Ekaterina_8\",\r\n    \"password\": \"Qwerty123!\"\r\n}",
+											"raw": "{\r\n    \"email\": \"{{pointInNameEmail}}\",\r\n    \"userName\": \"Ekaterina_8\",\r\n    \"password\": \"Qwerty123!\"\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -1616,13 +1801,51 @@
 										{
 											"listen": "test",
 											"script": {
+												"id": "d21c76d5-7ccd-4f2a-9e23-af84ca8ea681",
 												"exec": [
 													"pm.test(\"Status code is 204\", function () {\r",
 													"    pm.response.to.have.status(204);\r",
 													"});"
 												],
 												"type": "text/javascript",
-												"id": "d21c76d5-7ccd-4f2a-9e23-af84ca8ea681"
+												"packages": {}
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "a6940679-b7da-45e8-9c24-a8ee1768bbab",
+												"exec": [
+													"pm.globals.set(\"domainZone\", generateRandomEmail());\r",
+													"\r",
+													"function generateRandomEmail() {\r",
+													"    let result = '';\r",
+													"    const characters = 'abcdefghijklmnopqrstuvwxyz';\r",
+													"    const charactersLength = characters.length;\r",
+													"\r",
+													"    let userName = '';\r",
+													"    for (let i = 0; i < 6; i++) {\r",
+													"        userName += characters.charAt(Math.floor(Math.random() * charactersLength));\r",
+													"    }\r",
+													"\r",
+													"    let domain = '';\r",
+													"    for (let i = 0; i < 8; i++) {\r",
+													"    domain += characters.charAt(Math.floor(Math.random() * charactersLength));\r",
+													"    }\r",
+													"\r",
+													"    let domainZone = '';\r",
+													"    for (let i = 0; i < 2; i++) {\r",
+													"        domainZone += characters.charAt(Math.floor(Math.random() * charactersLength));\r",
+													"    }\r",
+													"\r",
+													"    result = userName + '@' + domain + '.' + domainZone;\r",
+													"\r",
+													"    return result;\r",
+													"}\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
 											}
 										}
 									],
@@ -1635,7 +1858,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"email\": \"ivanov.petrov@kozlov.ru\",\r\n    \"userName\": \"Ekaterina_9\",\r\n    \"password\": \"Qwerty123!\"\r\n}",
+											"raw": "{\r\n    \"email\": \"{{domainZone}}\",\r\n    \"userName\": \"Ekaterina_9\",\r\n    \"password\": \"Qwerty123!\"\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -2177,6 +2400,52 @@
 										"body": {
 											"mode": "raw",
 											"raw": "{\r\n    \"email\": \"ivanov@yandex.r\",\r\n    \"userName\": \"Ekaterina_21\",\r\n    \"password\": \"Qwerty123!\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/auth/registration",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"auth",
+												"registration"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "22",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "88813b47-15c1-4a08-9f5f-a72d31472217",
+												"exec": [
+													"pm.test(\"Status code is 400\", function () {\r",
+													"    pm.response.to.have.status(400);\r",
+													"});"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"id": "9a85f229-82ac-4526-925b-e82c01418390",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"email\": \"вася@вася.рф\",\r\n    \"userName\": \"Ekaterina\",\r\n    \"password\": \"Qwerty123!\"\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
