@@ -3309,97 +3309,6 @@
 					"name": "US",
 					"item": [
 						{
-							"name": "registration(tc-1)",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"Status code is 204\", function () {\r",
-											"    pm.response.to.have.status(204);\r",
-											"});"
-										],
-										"type": "text/javascript",
-										"id": "6124d9e8-5d4d-4c2b-bcee-cdbdbd700172"
-									}
-								}
-							],
-							"id": "979283f6-7926-4b90-a42a-8dbe8ee0f12a",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n    \"email\": \"test001@eicb.ru\",\r\n    \"userName\": \"test001\",\r\n    \"password\": \"Qwerty123!\",\r\n    \"passwordConfirmation\": \"Qqwerty123!\"\r\n} \r\n",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{baseUrl}}/auth/registration",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"auth",
-										"registration"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "registration-confirmation_with_email/tc8",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"Status code is 204\", function () {\r",
-											"    pm.response.to.have.status(204);\r",
-											"});"
-										],
-										"type": "text/javascript",
-										"packages": {},
-										"id": "ab521157-2c58-422b-ba59-a44486c59a70"
-									}
-								}
-							],
-							"id": "4dcdb522-85b8-481c-86e3-fb3a3676d8c0",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n  \"confirmationCode\": \"a89913b6-6840-47dd-9d9e-1947344e8cc3\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{baseUrl}}/auth/registration-confirmation",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"auth",
-										"registration-confirmation"
-									]
-								}
-							},
-							"response": []
-						},
-						{
 							"name": "unvalid code registration-confirmation_with_email/tc8 Copy",
 							"event": [
 								{
@@ -4141,6 +4050,7 @@
 						{
 							"listen": "test",
 							"script": {
+								"id": "7116abc0-7453-48f4-92c6-f634d544dbc0",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
@@ -4150,10 +4060,11 @@
 									"    pm.expect(jsonData.userName).to.be.not.null;\r",
 									"});\r",
 									"const response = pm.response.json()\r",
-									"pm.globals.set(\"userId\", response.userId)"
+									"pm.globals.set(\"userId\", response.userId)\r",
+									"pm.globals.set(\"userName\", response.userName)"
 								],
 								"type": "text/javascript",
-								"id": "7116abc0-7453-48f4-92c6-f634d544dbc0"
+								"packages": {}
 							}
 						}
 					],
@@ -4322,17 +4233,18 @@
 						{
 							"listen": "test",
 							"script": {
+								"id": "cd5992c8-6c25-4486-ab28-97807e38dd0b",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
 									"pm.test(\"chacking text response\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
-									"    pm.expect(jsonData.userName).to.eql(\"test001\")\r",
+									"    pm.expect(jsonData.userName).to.eql(pm.globals.get(\"userName\"))\r",
 									"})"
 								],
 								"type": "text/javascript",
-								"id": "cd5992c8-6c25-4486-ab28-97807e38dd0b"
+								"packages": {}
 							}
 						}
 					],
@@ -4528,102 +4440,6 @@
 								"body": {
 									"mode": "raw",
 									"raw": "{\r\n\"newPassword\": \"Пароль\",\r\n\"recoveryCode\": \"a578d97d-39d2-4a0c-8c44-186414c84fa9\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{baseUrl}}/auth/new-password",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"auth",
-										"new-password"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "step7_Demo74",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"Status code is 204\", function () {\r",
-											"    pm.response.to.have.status(204);\r",
-											"});\r",
-											"pm.test(\"Status code name has string\", function () {\r",
-											"    pm.response.to.have.status(\"No Content\");\r",
-											"});"
-										],
-										"type": "text/javascript",
-										"id": "4f735847-b549-42cb-a883-8a1c687f2e0b"
-									}
-								}
-							],
-							"id": "3e0710c1-700a-4e97-bb20-3c8114f08b40",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n\"newPassword\": \"Qwerty123!\",\r\n\"recoveryCode\": \"a578d97d-39d2-4a0c-8c44-186414c84fa9\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{baseUrl}}/auth/new-password",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"auth",
-										"new-password"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "step8_Demo74",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"Status code is 204\", function () {\r",
-											"    pm.response.to.have.status(204);\r",
-											"});\r",
-											"pm.test(\"Status code name has string\", function () {\r",
-											"    pm.response.to.have.status(\"No Content\");\r",
-											"});"
-										],
-										"type": "text/javascript",
-										"id": "9b73f72b-ff90-42cf-9b22-6a8dcb948c23"
-									}
-								}
-							],
-							"id": "b7bb51cd-6f4e-44e0-8d74-e2739cf1772b",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n\"newPassword\": \"Qwerty123!Qwerty123!\",\r\n\"recoveryCode\": \"133b6911-474a-4b21-9106-34a1fea8fae1\"\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -5026,81 +4842,6 @@
 				{
 					"name": "Demo-71 (validFieldEmail)",
 					"item": [
-						{
-							"name": "validEmail",
-							"event": [
-								{
-									"listen": "prerequest",
-									"script": {
-										"exec": [
-											""
-										],
-										"type": "text/javascript",
-										"packages": {},
-										"id": "f273f16d-2289-4c10-ac6e-6e58612c4d96"
-									}
-								}
-							],
-							"id": "e93ba809-3b3f-41b9-aec0-68ced675e257",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n  \"email\": \"{{$randomEmail}}\",\r\n  \"recaptcha\": \"string\"\r\n  \r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{baseUrl}}/auth/password-recovery",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"auth",
-										"password-recovery"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "inValidEmail",
-							"id": "a4df8eae-84c0-4f76-b3b5-6a7580843bf2",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n  \"email\": \"test001@eicb.ru\",\r\n  \"recaptcha\": \"string\",\r\n  \"baseUrl\": \"http://localhost:3000\"\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{baseUrl}}/auth/password-recovery",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"auth",
-										"password-recovery"
-									]
-								}
-							},
-							"response": []
-						},
 						{
 							"name": "step-22(Demo-71)",
 							"event": [
@@ -5888,6 +5629,7 @@
 						{
 							"listen": "test",
 							"script": {
+								"id": "70a67a5a-e930-43f5-9cc2-0a3d4c5edc17",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
@@ -5898,10 +5640,17 @@
 									"    pm.expect(jsonData.userName).to.not.be.null;\r",
 									"});\r",
 									"const response = pm.response.json()\r",
-									"pm.globals.set(\"userName\", response.userName)"
+									"pm.globals.set(\"userName\", response.userName);\r",
+									"pm.globals.set(\"firstName\", response.firstName);\r",
+									"pm.globals.set(\"lastName\", response.lastName);\r",
+									"pm.globals.set(\"city\", response.city);\r",
+									"pm.globals.set(\"dateOfBirth\", response.dateOfBirth);\r",
+									"pm.globals.set(\"aboutMe\", response.aboutMe);\r",
+									"\r",
+									""
 								],
 								"type": "text/javascript",
-								"id": "70a67a5a-e930-43f5-9cc2-0a3d4c5edc17"
+								"packages": {}
 							}
 						}
 					],
@@ -5950,6 +5699,7 @@
 						{
 							"listen": "test",
 							"script": {
+								"id": "43cd152d-1e54-4589-9649-9721053d8f57",
 								"exec": [
 									"pm.test(\"Status code is 204\", function () {\r",
 									"    pm.response.to.have.status(204);\r",
@@ -5958,7 +5708,27 @@
 									""
 								],
 								"type": "text/javascript",
-								"id": "43cd152d-1e54-4589-9649-9721053d8f57"
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "6b81c8bb-8e3d-4f88-bda8-1acc561a69f5",
+								"exec": [
+									"pm.globals.set(\"randomUsername\", generateRandomUserName());\r",
+									"function generateRandomUserName() {\r",
+									"    let result = '';\r",
+									"    const characters = 'abcdefghijklmnopqrstuvwxyz';\r",
+									"    const charactersLength = characters.length;\r",
+									"    for (let i = 0; i < 6; i++) {\r",
+									"        result += characters.charAt(Math.floor(Math.random() * charactersLength));\r",
+									"    }\r",
+									"    return result;\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
 							}
 						}
 					],
@@ -5981,7 +5751,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"userName\": \"{{userName}}\",\r\n  \"firstName\": \"LeoGro\",\r\n  \"lastName\": \"LeoGro\",\r\n  \"city\": \"\",\r\n  \"dateOfBirth\": \"\",\r\n  \"aboutMe\": \"\"\r\n}",
+							"raw": "{\r\n  \"userName\": \"{{randomUsername}}\",\r\n  \"firstName\": \"{{firstName}}\",\r\n  \"lastName\": \"{{lastName}}\",\r\n  \"city\": \"{{city}}\",\r\n  \"dateOfBirth\": \"{{dateOfBirth}}\",\r\n  \"aboutMe\": \"{{aboutMe}}\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -6294,6 +6064,7 @@
 						{
 							"listen": "test",
 							"script": {
+								"id": "bf5199c8-057e-41fe-9124-bf6a0f15f053",
 								"exec": [
 									"pm.test(\"Status code is 204\", function () {\r",
 									"    pm.response.to.have.status(204);\r",
@@ -6303,7 +6074,7 @@
 									""
 								],
 								"type": "text/javascript",
-								"id": "bf5199c8-057e-41fe-9124-bf6a0f15f053"
+								"packages": {}
 							}
 						}
 					],
@@ -6326,7 +6097,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"userName\": \"test001\",\r\n  \"firstName\": \"test001\",\r\n  \"lastName\": \"test002\",\r\n  \"city\": \"London\",\r\n  \"dateOfBirth\": null,\r\n  \"aboutMe\": \"\"\r\n}",
+							"raw": "{\r\n  \"userName\": \"{{userName}}\",\r\n  \"firstName\": \"test001\",\r\n  \"lastName\": \"test002\",\r\n  \"city\": \"London\",\r\n  \"dateOfBirth\": null,\r\n  \"aboutMe\": \"\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
