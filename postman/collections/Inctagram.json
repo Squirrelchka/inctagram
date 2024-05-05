@@ -1382,7 +1382,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"email\": \"{{domainNumberEmail}}\",\r\n    \"userName\": \"Ekaterina_3\",\r\n    \"password\": \"Qwerty123!\"\r\n}",
+											"raw": "{\r\n    \"email\": \"{{domainNumberEmail}}\",\r\n    \"userName\": \"Ekaterina_100786\",\r\n    \"password\": \"Qwerty123!\"\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
