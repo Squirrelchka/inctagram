@@ -6441,6 +6441,198 @@
 				}
 			],
 			"id": "d19aa506-9cd5-4a53-870a-6c678a310ae5"
+		},
+		{
+			"name": "US-Viewing public posts//profile",
+			"item": [
+				{
+					"name": "Demo-151(total count users)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f7c918ab-843b-458c-b4ff-61cbbadbbc92",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"chacking text response\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.totalCount).to.be.not.null;\r",
+									"   pm.expect(jsonData.totalCount).to.be.a('number');\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "0506f375-6516-43d8-a2aa-a2406dc422b9",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public-user",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public-user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all last posts",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "439a9cab-9093-4cd2-ba06-19f3bdac6747",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"chacking text response\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.ownerId).to.be.not.null;\r",
+									"    pm.expect(jsonData.id).to.be.not.null\r",
+									"});\r",
+									"\r",
+									"const response = pm.response.json();\r",
+									"let ownerIds = response.items.map((item) => item.ownerId);\r",
+									"let randomOwnerId = ownerIds[Math.floor(Math.random() * ownerIds.length)];\r",
+									"console.log(randomOwnerId);\r",
+									"pm.globals.set(\"randomOwnerId\", randomOwnerId);\r",
+									"    \r",
+									"    \r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "44357ea8-319c-4abc-912b-6fe83ad1112c",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public-posts/all",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public-posts",
+								"all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Demo-161(Get all posts user)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "25e4b94a-e8c0-4bf4-8199-be9d6283b580",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"chacking text response\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.userName).to.be.not.null;\r",
+									"    pm.expect(jsonData.id).to.be.not.null\r",
+									"});\r",
+									"const response = pm.response.json();\r",
+									"let postIds = response.items.map((item) => item.id);\r",
+									"let randomPostId = postIds[Math.floor(Math.random() * postIds.length)];\r",
+									"console.log(randomPostId);\r",
+									"pm.globals.set(\"randomPostId\", randomPostId);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "829495b1-b35c-407d-b4ad-b8291dcf83c3",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public-posts/user/{{randomOwnerId}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public-posts",
+								"user",
+								"{{randomOwnerId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Demo-184(getting a random user post)",
+					"id": "6124d453-4597-4857-b4ed-458fb5bc9a2c",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public-posts/{{randomPostId}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public-posts",
+								"{{randomPostId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Demo-163(switching to a user profile info)",
+					"id": "441df4ee-ba57-4ecb-a58a-ed0840428f8c",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/public-user/profile/{{randomOwnerId}}",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"public-user",
+								"profile",
+								"{{randomOwnerId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "4197d867-58a2-446f-bb2b-976e59a1a1b9"
 		}
 	],
 	"variable": [
