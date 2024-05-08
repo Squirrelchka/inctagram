@@ -24,6 +24,9 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 const signUpSelectors = require("../fixtures/pageSignUp/signUpSelectors.json");
+const signInSelectors = require("../fixtures/pageSignIn/signInSelectors.json");
+const sideBarSelectors = require("../fixtures/sideBarSelectors.json");
+const logOutSelectors = require("../fixtures/logOutSelectors.json");
 
 Cypress.Commands.add("checkValidValues", (userName, email, password, passwordConfirmation) => {
     cy.get(signUpSelectors.userNameField).clear().type(userName);
@@ -66,4 +69,15 @@ Cypress.Commands.add("checkInvalidValuesPasswordConfirmation", (password, passwo
     cy.get(signUpSelectors.emailSent).should('have.text', 'Сообщение отправлено');
     cy.contains('ОК').click({ force: true });
   });
-  
+  Cypress.Commands.add('signIn', (Email, Password) => {
+    cy.get(signInSelectors.emailField).type(Email);
+        cy.get(signInSelectors.passwordField).type(Password);
+        cy.get(signInSelectors.buttonSignIn).click();
+      });
+      Cypress.Commands.add('logout', () => {
+        cy.get(sideBarSelectors.logOut).click();
+        cy.get(logOutSelectors.buttonYes).click();
+      });
+      
+      
+      

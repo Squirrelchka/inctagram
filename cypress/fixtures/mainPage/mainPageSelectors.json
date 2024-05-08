@@ -1,0 +1,5 @@
+{
+    "headerButtonSignUp":".Flex_gap36__uFzby > div > a:nth-child(2) > button",
+    "headerButtonSignIn":".Flex_gap36__uFzby > div > a:nth-child(1)",
+    "descriptionPost":":nth-child(1) > .Flex_directionColumn__ST_ag > .PostCardExtended_description__21OEE"
+}

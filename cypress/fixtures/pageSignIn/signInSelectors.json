@@ -1,3 +1,6 @@
 {
-    "titleSignIn":"body > div.app > div.app-container > main > div > div.title.b-title.bt26.semibold.align-center"
+    "titleSignIn":"body > div.app > div.app-container > main > div > div.title.b-title.bt26.semibold.align-center",
+    "emailField":"#email",
+    "passwordField":"#password",
+    "buttonSignIn":"body > div.app > div.app-container > main > div > form > button"
 }

@@ -1,0 +1,5 @@
+{
+    "create":".app > div.app-container > div > div > div:nth-child(1) > div:nth-child(2) > a > div",
+    "logOut":".SignOutButton_text__6A2rx"
+    
+}

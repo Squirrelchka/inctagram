@@ -1,0 +1,6 @@
+{
+    "buttonSelectFromDevice":".Flex_gap36__uFzby > .Flex_justifyStart__y6t0M > [data-testid='test']",
+    "nextOnPage":".Flex_alignCenter__AOlfc.Flex_directionRow__Y9Klj.Flex_nowrap__LdreS.Flex_max__NGqpD > button",
+    "publicationDescription":".Flex_nowrap__LdreS > form > div > div > div > textarea"
+    
+}
