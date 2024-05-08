@@ -2,14 +2,17 @@ const mainPageSelectors = require("../fixtures/mainPage/mainPageSelectors.json")
 const sideBarSelectors = require("../fixtures/sideBarSelectors.json");
 const creatingPostsSelectors = require("../fixtures/creatingPostsSelectors.json");
 const logOutSelectors = require("../fixtures/logOutSelectors.json");
-import { faker } from "@faker-js/faker"
+import { faker } from "@faker-js/faker";
+   
 
 describe("mainPage", () => {
   const Email = Cypress.config("email");
   const Password = Cypress.config("password");
+  const randomText = faker.lorem.text().substring(0, 500);
+  const textToType = randomText;
   before(() => {
     cy.visit("/ru");
-    cy.logout();
+    // cy.logout();
 
   });
 
@@ -47,15 +50,17 @@ describe("mainPage", () => {
   cy.wait(2000);
   cy.get(creatingPostsSelectors.nextOnPage).click();
   cy.wait(2000);
-  cy.get(creatingPostsSelectors.publicationDescription).type('the post is displayed on the main page');
+  cy.get(creatingPostsSelectors.publicationDescription).type(randomText);
+    // cy.get(creatingPostsSelectors.publicationDescription).type('the post is displayed on the main page');
   cy.wait(2000);
   cy.get(creatingPostsSelectors.nextOnPage).click();
   cy.wait(5000);
   cy.logout();
-  cy.get(mainPageSelectors.descriptionPost).should(
-    "have.text",
-    "the post is displayed on the main page"
-  ); 
+  cy.get(mainPageSelectors.descriptionPost).should('contain', textToType);
+  // cy.get(mainPageSelectors.descriptionPost).should(
+  //   "have.text",
+  //   "the post is displayed on the main page"
+  // ); 
 });
 // it("checking the switch to the page signUp", () => {
 //        cy.get(mainPageSelectors.headerButtonSignUp).click();
