@@ -4086,8 +4086,8 @@
 						"method": "GET",
 						"header": [],
 						"body": {
-							"mode": "raw",
-							"raw": "",
+							"mode": "urlencoded",
+							"urlencoded": [],
 							"options": {
 								"raw": {
 									"language": "json"
@@ -6125,6 +6125,7 @@
 						{
 							"listen": "test",
 							"script": {
+								"id": "f088847a-666a-4632-959d-97b9d1a60624",
 								"exec": [
 									"pm.test(\"Status code is 201\", function () {\r",
 									"    pm.response.to.have.status(201);\r",
@@ -6135,11 +6136,17 @@
 									"pm.expect(jsonData.avatars[0].width.height).to.be.not.null;\r",
 									"});\r",
 									"\r",
+									"const response = pm.response.json();\r",
+									"const firstAvatarUrl = response.avatars[0].url;\r",
+									"pm.environment.set(\"firstAvatarUrl\", firstAvatarUrl);\r",
+									"\r",
+									"\r",
+									"\r",
 									"\r",
 									""
 								],
 								"type": "text/javascript",
-								"id": "f088847a-666a-4632-959d-97b9d1a60624"
+								"packages": {}
 							}
 						}
 					],
@@ -6167,7 +6174,7 @@
 								{
 									"key": "file",
 									"type": "file",
-									"src": "postman-cloud:///1eed0ef2-d681-40e0-a997-ebbd8ffbf798"
+									"src": "/C:/Users/Kristina Gromova/Desktop/work testing/date testing/фото разных размеров и разрешений/PNG/5,1 Мб.png"
 								}
 							]
 						},
@@ -6180,6 +6187,76 @@
 								"users",
 								"profile",
 								"avatar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "chacking addition  new avatars",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f088847a-666a-4632-959d-97b9d1a60624",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"content of response\", function () {\r",
+									"var jsonData = pm.response.json();\r",
+									"pm.expect(jsonData.avatars[0].url).to.be.not.null;\r",
+									"});\r",
+									"pm.test(\"Checking text response\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    var firstAvatarUrl = pm.variables.get(\"firstAvatarUrl\");\r",
+									"    pm.expect(jsonData.avatars[0].url).to.eql(firstAvatarUrl);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"id": "d42916ca-11c4-4d4e-8aab-1acc33c3d458",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {},
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/users/profile",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"users",
+								"profile"
 							]
 						}
 					},
