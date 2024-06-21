@@ -5579,6 +5579,7 @@
 						{
 							"listen": "test",
 							"script": {
+								"id": "a000f747-19c5-4d30-a686-cb8291b97c2d",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
@@ -5589,10 +5590,11 @@
 									"    pm.expect(jsonData.accessToken).to.not.be.null\r",
 									"});\r",
 									"var jsonData = JSON.parse(responseBody);\r",
-									"postman.setEnvironmentVariable(\"accessToken\", jsonData.accessToken);"
+									"postman.setEnvironmentVariable(\"accessToken\", jsonData.accessToken);\r",
+									""
 								],
 								"type": "text/javascript",
-								"id": "a000f747-19c5-4d30-a686-cb8291b97c2d"
+								"packages": {}
 							}
 						}
 					],
@@ -5648,6 +5650,7 @@
 									"pm.globals.set(\"city\", response.city);\r",
 									"pm.globals.set(\"dateOfBirth\", response.dateOfBirth);\r",
 									"pm.globals.set(\"aboutMe\", response.aboutMe);\r",
+									"\r",
 									"\r",
 									""
 								],
@@ -6174,7 +6177,7 @@
 								{
 									"key": "file",
 									"type": "file",
-									"src": "/C:/Users/Kristina Gromova/Desktop/work testing/date testing/фото разных размеров и разрешений/PNG/5,1 Мб.png"
+									"src": "/C:/Users/Kristina Gromova/Desktop/work testing/date testing/фото разных размеров и разрешений/PNG/9,9 Мб.png"
 								}
 							]
 						},
@@ -6209,7 +6212,7 @@
 									"});\r",
 									"pm.test(\"Checking text response\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
-									"    var firstAvatarUrl = pm.variables.get(\"firstAvatarUrl\");\r",
+									"    var firstAvatarUrl = pm.environment.get(\"firstAvatarUrl\");\r",
 									"    pm.expect(jsonData.avatars[0].url).to.eql(firstAvatarUrl);\r",
 									"});\r",
 									"\r",
